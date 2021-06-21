@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Lambda function with CloundWatch Event
+
+Resources:
+  helloworldpython3:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: app.lambda_handler
+      Runtime: python3.6
+      CodeUri: src/
+      Description: An AWS Lambda function.
+      MemorySize: 128
+      Timeout: 3
+      Events:
+        MyCloudWatchEvent:
+          Type: Schedule
+          Properties:
+            Schedule: 'rate(1 minute)'
